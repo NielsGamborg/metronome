@@ -2,30 +2,25 @@
 <html>
 
 <head>
-    <title>Metronome</title>
+    <title>Drum Kit Metronome</title>
     <meta charset="utf-8" />
     <link type="text/css" href="metronome.css" rel="stylesheet">
-
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <!--<script src="https://unpkg.com/vue-resource@1.2.0/dist/vue-resource.min.js"></script>-->
 </head>
 
 <body>
     <div id=appContainer>
         <div id="wrapper">
-            <h1>Metronome</h1>
+            <h1>Drum Kit Metronome</h1>
 
             <div>
-                <metronome-box :start-metronome="startMetronome" :stop-metronome="stopMetronome" :change-sound="changeSound" :beat-obj="beatObj" :sounds="sounds" :is-playing="isPlaying" :beats="beats" :counter="counter"></metronome-box>
+                <metronome-box :start-metronome="startMetronome" :stop-metronome="stopMetronome" :update-metronome="updateMetronome" :beat-obj="beatObj" :sounds="sounds" :is-playing="isPlaying" :beats="beats" :counter="counter"></metronome-box>
             </div>
         </div>
 
 
     </div>
-    <!--
-    <audio src="sounds/kick.wav"></audio>
-    <audio src="sounds/snare.wav"></audio>
--->
+
     <script src="js/app.js"></script>
 
 </body>

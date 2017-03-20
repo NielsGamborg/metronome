@@ -11,7 +11,7 @@ body {
 
 #wrapper {
     background-color: white;
-    min-height: 800px;
+    min-height: 600px;
     margin: 0 auto;
     padding: .5em 2em 4em;
     max-width: 400px;
@@ -23,33 +23,30 @@ body {
 
 #metronomeBox input {
     font-size: 18px;
-    margin-right: 1em;
+    margin-right: 2.5em;
     padding: .2em .4em;
-    width: 70px;
+    width: 40px;
 }
 
 #metronomeBox button {
     font-size: 18px;
-    margin: 2em 1em 0 0;
+    margin: 2em .5em 0 0;
     padding: .2em .4em;
 }
 
-#bpmBox {
-    margin: 1em 0;
-}
-
-#soundBox {
-    margin: 3em 0;
+#soundBox,
+#beatsBox {
+    margin: 2em 0 4em;
 }
 
 #soundBox .soundSelector {
-    border-bottom: 3px solid transparent;
+    border-bottom: 8px solid transparent;
     display: inline-block;
     margin-right: 0.5em;
 }
 
 #soundBox .soundSelector.active {
-    border-bottom: 3px solid red;
+    border-bottom: 8px solid #0099cc;
 }
 
 #soundBox .soundSelector p {
@@ -63,7 +60,7 @@ body {
 
 h1 {
     color: #666677;
-    font-size: 40px;
+    font-size: 34px;
     margin-top: 1.2em;
     text-align: center;
 }
@@ -75,7 +72,7 @@ h1 {
     color: #888899;
     font-size: 50px;
     height: 100px;
-    margin: 2em auto;
+    margin: 1.2em auto;
     padding-top: 11px;
     text-align: center;
     transition: border 0s;
