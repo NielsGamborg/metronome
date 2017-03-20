@@ -1,0 +1,53 @@
+body {
+    background-color: #112233;
+    font-family: arial, helvetica, sans-serif;
+    margin: 0;
+}
+
+#wrapper {
+    background-color: white;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: .5em 2em 4em;
+    max-width: 400px;
+}
+
+#metronomeBox {
+    margin: 3em 0;
+}
+
+#metronomeBox input {
+    font-size: 18px;
+    margin-right: 1em;
+    width: 150px;
+}
+
+#metronomeBox button {
+    font-size: 18px;
+    margin: 2em 1em 0 0;
+}
+
+h1 {
+    font-size: 30px;
+    margin-top: 2em;
+    text-align: center;
+}
+
+#beatbox h3 {
+    border: 8px solid transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    color: #888899;
+    font-size: 50px;
+    height: 100px;
+    margin: 2em auto;
+    padding-top: 10px;
+    text-align: center;
+    transition: border 0s;
+    width: 100px;
+}
+
+#beatbox h3.accent {
+    border: 8px solid;
+    transition: border .2s;
+}
