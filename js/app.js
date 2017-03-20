@@ -19,25 +19,25 @@ Vue.component('metronome-box', {
                 <option v-for="item in sounds" :value="'sounds/' + item +'.wav'">{{ item }}</option>         
             </select>
         -->
-            <div class="soundSelector">
+            <div class="soundSelector"  :class="{active: counter % 4 == 1 && counter > 8 }">
             <p>1. beat</p>
                 <select v-model="snd1" v-on:change="changeSound(snd1, snd2, snd3, snd4)">
                     <option v-for="item in sounds" :value="'sounds/' + item +'.wav'">{{ item }}</option>         
                 </select>
             </div>
-            <div class="soundSelector">
+            <div class="soundSelector"  :class="{active: counter % 4 == 2 && counter > 8 }">
             <p>2. beat</p>
                 <select v-model="snd2" v-on:change="changeSound(snd1, snd2, snd3, snd4)">
                     <option v-for="item in sounds" :value="'sounds/' + item +'.wav'">{{ item }}</option>       
                 </select>
             </div>
-            <div class="soundSelector">
+            <div class="soundSelector"  :class="{active: counter % 4 == 3 && counter > 8 }">
             <p>3. beat</p>
                 <select v-model="snd3" v-on:change="changeSound(snd1, snd2, snd3, snd4)">
                     <option v-for="item in sounds" :value="'sounds/' + item +'.wav'">{{ item }}</option>       
                 </select>
             </div>
-            <div class="soundSelector">
+            <div class="soundSelector"  :class="{active: counter % 4 == 0 && counter > 8 }">
             <p>4. beat</p>
                 <select v-model="snd4" v-on:change="changeSound(snd1, snd2, snd3, snd4)">
                     <option v-for="item in sounds" :value="'sounds/' + item +'.wav'">{{ item }}</option>       
@@ -116,21 +116,21 @@ app = new Vue({
                 /* Beats are set... */
             } else if (this.counter % 4 == 0) {
                 audio = document.querySelector("audio[src='" + this.beatObj.sound1 + "']");
-                if (this.counter % 4 != 0) {
-                    audio.volume = 0.7;
-                } else {
-                    audio.volume = 1;
-                }
+                audio.volume = 1;
             } else if (this.counter % 4 == 1) {
                 audio = document.querySelector("audio[src='" + this.beatObj.sound2 + "']");
+                audio.volume = 0.7;
             } else if (this.counter % 4 == 2) {
                 audio = document.querySelector("audio[src='" + this.beatObj.sound3 + "']");
+                audio.volume = 0.7;
             } else {
                 audio = document.querySelector("audio[src='" + this.beatObj.sound4 + "']");
+                audio.volume = 0.7;
             }
             if (audio) {
                 audio.currentTime = 0;
                 audio.play();
+                console.log(new Date())
             }
 
             this.counter++;

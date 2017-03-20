@@ -18,13 +18,14 @@ body {
 }
 
 #metronomeBox {
-    margin: 3em 0;
+    margin: 2em 0;
 }
 
 #metronomeBox input {
     font-size: 18px;
     margin-right: 1em;
-    width: 150px;
+    padding: .2em .4em;
+    width: 70px;
 }
 
 #metronomeBox button {
@@ -41,8 +42,13 @@ body {
 }
 
 #soundBox .soundSelector {
+    border-bottom: 3px solid transparent;
     display: inline-block;
     margin-right: 0.5em;
+}
+
+#soundBox .soundSelector.active {
+    border-bottom: 3px solid red;
 }
 
 #soundBox .soundSelector p {
@@ -55,8 +61,9 @@ body {
 }
 
 h1 {
-    font-size: 30px;
-    margin-top: 2em;
+    color: #666677;
+    font-size: 40px;
+    margin-top: 1.2em;
     text-align: center;
 }
 
