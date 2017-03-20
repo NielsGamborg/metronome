@@ -65,11 +65,11 @@ Vue.component('metronome-box', {
 app = new Vue({
     el: '#appContainer',
     data: {
-        sounds: ["boom", "clap", "hihat", "kick", "openhat", "ride", "snare", "tink", "tom"],
+        sounds: ["boom", "clap", "hihat", "kick1", "kick2", "openhat", "ride", "snare", "tink", "tom"],
         beatObj: {
-            sound1: 'sounds/kick.wav',
+            sound1: 'sounds/kick1.wav',
             sound2: 'sounds/snare.wav',
-            sound3: 'sounds/kick.wav',
+            sound3: 'sounds/kick1.wav',
             sound4: 'sounds/snare.wav',
         },
         beats: 120,
@@ -130,7 +130,6 @@ app = new Vue({
             if (audio) {
                 audio.currentTime = 0;
                 audio.play();
-                console.log(new Date())
             }
 
             this.counter++;
