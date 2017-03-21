@@ -5,16 +5,17 @@ Vue.filter('showBeat', function(value) {
 })
 
 Vue.component('metronome-box', {
-    props: ['startMetronome', 'stopMetronome', 'updateMetronome', 'sounds', 'isPlaying', 'beats', 'counter', 'beatObj'],
+    props: ['startMetronome', 'stopMetronome', 'updateMetronome', 'sounds', 'isPlaying', 'counter', 'beatObj'],
     template: `
     <div id="metronomeBox">
         
         <div id="beatsBox">
-            Beats per Minute: <input type="text" v-model="bpm" :value="beats"  v-on:keyup.enter="updateMetronome(bpm, snd1, snd2, snd3, snd4)"> 
+            Beats Per Minute: <input type="text" v-model="bpm" :value="beatObj.bpm"  v-on:keyup.enter="updateMetronome(bpm, snd1, snd2, snd3, snd4)"> 
             <button id="startButton" v-on:click="updateMetronome(bpm, snd1, snd2)">Start</button>
             <button id="stopButton" v-on:click="stopMetronome(bpm)">Stop</button>
         </div>
         <div id="soundBox">
+        
         <!--
             <select v-for="(item,index) in beatObj" v-model="snd1" v-on:change="updateMetronome(snd1, snd2)">
                 <option v-for="item in sounds" :value="'sounds/' + item +'.wav'">{{ item }}</option>         
@@ -53,7 +54,7 @@ Vue.component('metronome-box', {
     </div>`,
     data: function() {
         return {
-            bpm: this.beats,
+            bpm: this.beatObj.bpm,
             snd1: this.beatObj.sound1,
             snd2: this.beatObj.sound2,
             snd3: this.beatObj.sound3,
@@ -68,12 +69,12 @@ app = new Vue({
     data: {
         sounds: ["boom", "clap", "hihat", "kick1", "kick2", "openhat", "ride", "snare", "tink", "tom"],
         beatObj: {
+            bpm: 90,
             sound1: 'sounds/kick1.wav',
             sound2: 'sounds/snare.wav',
             sound3: 'sounds/kick1.wav',
             sound4: 'sounds/snare.wav',
         },
-        beats: 120,
         isPlaying: false,
         counter: 0,
         timerObj: {}
@@ -113,7 +114,7 @@ app = new Vue({
 
             this.counter++;
             this.isPlaying = true;
-            timerObj = setTimeout(this.startMetronome, 60000 / this.beats)
+            timerObj = setTimeout(this.startMetronome, 60000 / this.beatObj.bpm)
         },
 
         updateMetronome: function(bpm, sound1, sound2, sound3, sound4) {
@@ -130,13 +131,13 @@ app = new Vue({
                 this.beatObj.sound4 = sound4;
             }
             if (!bpm || bpm == "") {
-                bpm = this.beats;
+                bpm = this.beatObj.bpm;
             } else if (bpm > 300) { //preventing insane tempo
-                this.beats = 300
+                this.beatObj.bpm = 300
             } else if (bpm < 20) { // preventing too slow
-                this.beats = 20
+                this.beatObj.bpm = 20
             } else if (bpm > 19 && bpm < 301) {
-                this.beats = bpm
+                this.beatObj.bpm = bpm
             }
             if (!this.isPlaying) {
                 this.startMetronome(bpm, sound1, sound2, sound3, sound4);
