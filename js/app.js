@@ -74,6 +74,8 @@ app = new Vue({
             sound2: 'sounds/snare.wav',
             sound3: 'sounds/kick1.wav',
             sound4: 'sounds/snare.wav',
+            soundExtra: 'sounds/hihat.wav',
+            soundExtra2: 'sounds/openhat.wav',
         },
         isPlaying: false,
         counter: 0,
@@ -82,7 +84,9 @@ app = new Vue({
     components: {},
     methods: {
         startMetronome: function(bpm, sound1, sound2, sound3, sound4) {
-            var audio = document.querySelector("audio");
+            var audio = null;
+            var audio2 = null;
+
             /* Counting in... */
             if (this.counter < 8) {
                 if (this.counter < 4 && this.counter % 2 == 0) {
@@ -94,27 +98,38 @@ app = new Vue({
                     audio = document.querySelector("audio[src='sounds/tink.wav']");
                 }
                 /* Each beats are set */
-            } else if (this.counter % 4 == 0) {
+            } else if (this.counter % 8 == 0) {
                 audio = document.querySelector("audio[src='" + this.beatObj.sound1 + "']");
                 audio.volume = 1;
-            } else if (this.counter % 4 == 1) {
+            } else if (this.counter % 8 == 2) {
                 audio = document.querySelector("audio[src='" + this.beatObj.sound2 + "']");
                 audio.volume = 0.8;
-            } else if (this.counter % 4 == 2) {
+            } else if (this.counter % 8 == 4) {
                 audio = document.querySelector("audio[src='" + this.beatObj.sound3 + "']");
                 audio.volume = 0.8;
-            } else {
+            } else if (this.counter % 8 == 6) {
                 audio = document.querySelector("audio[src='" + this.beatObj.sound4 + "']");
                 audio.volume = 0.8;
             }
-            if (audio) {
+            if (audio && this.counter % 2 == 0) {
                 audio.currentTime = 0; //restart sound if .wav is still playing
                 audio.play();
+            }
+            if (this.counter > 8) {
+                audio2 = document.querySelector("audio[src='" + this.beatObj.soundExtra + "']");
+                if (this.counter % 8 == 7) {
+                    audio2 = document.querySelector("audio[src='" + this.beatObj.soundExtra2 + "']");
+                }
+                audio2.volume = 0.5;
+            }
+            if (audio2) {
+                audio2.currentTime = 0; //restart sound if .wav is still playing
+                audio2.play();
             }
 
             this.counter++;
             this.isPlaying = true;
-            timerObj = setTimeout(this.startMetronome, 60000 / this.beatObj.bpm)
+            timerObj = setTimeout(this.startMetronome, 60000 / ((this.beatObj.bpm) * 2));
         },
 
         updateMetronome: function(bpm, sound1, sound2, sound3, sound4) {
